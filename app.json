@@ -4,6 +4,15 @@
     "slug": "my-project",
     "version": "1.0.0",
     "orientation": "portrait",
+    "plugins": [
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+        }
+      ]
+    ],
+    
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
