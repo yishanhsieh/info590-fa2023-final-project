@@ -1,8 +1,16 @@
 import * as React from "react";
-import { Text, View, StyleSheet, Button, FlatList, Image } from "react-native";
-import { Audio } from "expo-av";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  FlatList,
+  Image,
+  SafeAreaView,
+} from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PlaySound from "./components/PlaySound";
 
 export default function App() {
   const [album, SetAlbum] = useState([]);
@@ -44,7 +52,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <FlatList data={album} renderItem={renderItem} />
+      <SafeAreaView>
+        <PlaySound />
+        <FlatList data={album} renderItem={renderItem} />
+      </SafeAreaView>
     </View>
   );
 }
@@ -55,9 +66,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ecf0f1",
     padding: 10,
+    marginTop: 30,
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
+    margin: 10,
+    justifyContent: "center",
   },
 });
