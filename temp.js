@@ -1,49 +1,26 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Audio } from "expo-av";
+import * as React from "react";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function APP() {
-  const [album, SetAlbum] = useState("");
-  const [sound, SetSound] = useState();
+import EntryPoint from "./components/EntryPoint";
+import RandomOption from "./components/RandomOption";
 
-  useEffect(() => {
-    async function fetchdata() {
-      const options = {
-        method: "GET",
-        url: "https://spotify23.p.rapidapi.com/playlist_tracks/",
-        params: {
-          id: "2siMQsSv15yXBDdjmUSfJX",
-          offset: "0",
-          limit: "10",
-        },
-        headers: {
-          "X-RapidAPI-Key":
-            "3d001a826cmsh0ce72ea4b147ddep1c33d3jsn2438668ea1ef",
-          "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
-        },
-      };
-      try {
-        const response = await axios.request(options);
-        const albumName = response.data.items[1].track.album.name;
-        const songURL = response.data.items[1].track.preview_url;
-        SetSound(songURL);
-        SetAlbum(albumName);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+const Stack = createNativeStackNavigator();
 
-    fetchdata();
-  }, []);
-
+export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Animation music:</Text>
-      <View>
-        <Text>Song name: {album} </Text>
-        <Text>Song name: {sound} </Text>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="EntryPoint">
+          <Stack.Screen
+            name="Welcome"
+            component={EntryPoint}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="RandomOption" component={RandomOption} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
 }
@@ -51,8 +28,14 @@ export default function APP() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+    padding: 10,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
     justifyContent: "center",
   },
 });

@@ -2,7 +2,6 @@ import * as React from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { Audio } from "expo-av";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function PlaySound() {
   const [sound, setSound] = useState();
