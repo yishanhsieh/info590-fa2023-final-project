@@ -12,10 +12,49 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PlaySound from "./PlaySound";
 
-export default function RandomOption() {
-  const [album, SetAlbum] = useState([]);
+const fakeSong = [
+  {
+    track: {
+      albumName: "ピースサイン",
+      songUrl:
+        "https://p.scdn.co/mp3-preview/e4ff9d81aaa848d09bb60899f4a0b818b42428fb?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+    },
+  },
+  {
+    track: {
+      albumName: "The Hero! (One Punch Man)",
+      songUrl:
+        "https://p.scdn.co/mp3-preview/78bb89b5af202eca6a98bfc4383eb7805be6412d?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+    },
+  },
+  {
+    track: {
+      albumName: "Shinzo wo Sasageyo! - TV Size",
+      songUrl:
+        "https://p.scdn.co/mp3-preview/3692e9178dddd07706471fdce5145c3d80d228d8?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+    },
+  },
+  {
+    track: {
+      albumName: "Kaikai Kitan",
+      songUrl:
+        "https://p.scdn.co/mp3-preview/f8d3e24ffde4ff834976fd45a1f25970b3078cf4?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+    },
+  },
+  {
+    track: {
+      albumName: "炎",
+      songUrl:
+        "https://p.scdn.co/mp3-preview/dac115f1d54820a7b1f7591f2cdd1576bf840b14?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+    },
+  },
+];
 
-  const getAlbum = async () => {
+export default function RandomOption() {
+  const [album, SetAlbum] = useState();
+  const [songUrl, SetSongUrl] = useState();
+
+  /*  const getTrack =  async () => {
     try {
       const response = await axios({
         method: "GET",
@@ -31,33 +70,44 @@ export default function RandomOption() {
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       });
-      const tracks = response.data.items;
-      SetAlbum(tracks);
+      const tracks = response.data.items; 
+      SetAlbum(tracks); 
     } catch (err) {
       console.log(err.message);
     }
-  };
-  useEffect(() => {
-    getAlbum();
-  }, []);
+  } */ /*  useEffect(() => {
+    getTrack();
+  }, []); */
 
-  const renderItem = ({ item }) => {
+  /*   const renderItem = ({ item }) => {
     return (
-      <Image
-        style={styles.image}
-        source={{
-          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX9t-ZgwFFs8Pwuc69CmUt6byr2r26bwSYds_8wGbIC7xkMZ_sC5C73QZ4_NB4FZQ0S4I&usqp=CAU",
-        }}
-        /*  source={{ uri: item.track.album.images[0].url }} */
-      ></Image>
+      <View>
+        <Text>Album: {item.track.albumName}</Text>
+        source={{ uri: item.track.album.images[0].url }} 
+      </View>
     );
+  }; */
+
+  const getRandomTrack = () => {
+    const randomId = Math.floor(Math.random() * fakeSong.length);
+    const selectedAlbum = fakeSong[randomId].track.albumName;
+    const selectedSong = fakeSong[randomId].track.songUrl;
+    SetAlbum(selectedAlbum);
+    SetSongUrl(selectedSong);
+    console.log(randomId, selectedAlbum, album, selectedSong);
   };
 
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <PlaySound />
-        <FlatList data={album} renderItem={renderItem} />
+        <Button title="random song" onPress={getRandomTrack} />
+        <Text>Album:{album}</Text>
+        <PlaySound songUrl={songUrl} />
+
+        {/*     <FlatList
+          data={album}
+          renderItem={({ item }) => <Text>Album:{item}</Text>}
+        /> */}
       </SafeAreaView>
     </View>
   );
