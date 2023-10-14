@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import EntryPoint from "./components/EntryPoint";
-import RandomOption from "./components/RandomOption";
+import RandomOption from "./components/RandomSong";
 
 const Stack = createNativeStackNavigator();
 

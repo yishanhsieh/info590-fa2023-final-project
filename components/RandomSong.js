@@ -9,8 +9,9 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useState, useEffect } from "react";
+import { Audio } from "expo-av";
 import axios from "axios";
-import PlaySound from "./PlaySound";
+import RandomOptions from "./RandomOptions";
 
 const fakeSong = [
   {
@@ -50,9 +51,10 @@ const fakeSong = [
   },
 ];
 
-export default function RandomOption() {
+export default function RandomSong() {
   const [album, SetAlbum] = useState();
   const [songUrl, SetSongUrl] = useState();
+  const [sound, setSound] = useState();
 
   /*  const getTrack =  async () => {
     try {
@@ -94,20 +96,40 @@ export default function RandomOption() {
     const selectedSong = fakeSong[randomId].track.songUrl;
     SetAlbum(selectedAlbum);
     SetSongUrl(selectedSong);
-    console.log(randomId, selectedAlbum, album, selectedSong);
+    playSound(selectedSong);
   };
+
+  async function playSound(songUrl) {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync({
+      uri: songUrl,
+    });
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Button title="random song" onPress={getRandomTrack} />
-        <Text>Album:{album}</Text>
-        <PlaySound songUrl={songUrl} />
+        <Button
+          title="random song"
+          onPress={() => {
+            getRandomTrack();
+            //soundUrl
+          }}
+        />
 
-        {/*     <FlatList
-          data={album}
-          renderItem={({ item }) => <Text>Album:{item}</Text>}
-        /> */}
+        <RandomOptions selectedAlbum={album} />
       </SafeAreaView>
     </View>
   );
