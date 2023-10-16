@@ -52,9 +52,9 @@ const fakeSong = [
 ];
 
 export default function RandomSong() {
-  const [album, SetAlbum] = useState();
-  const [songUrl, SetSongUrl] = useState();
-  const [sound, setSound] = useState();
+  const [album, SetAlbum] = useState("");
+  const [sound, setSound] = useState("");
+  let allAlbumName = [];
 
   /*  const getTrack =  async () => {
     try {
@@ -95,9 +95,15 @@ export default function RandomSong() {
     const selectedAlbum = fakeSong[randomId].track.albumName;
     const selectedSong = fakeSong[randomId].track.songUrl;
     SetAlbum(selectedAlbum);
-    SetSongUrl(selectedSong);
     playSound(selectedSong);
   };
+
+  function getAllAlbum() {
+    allAlbumName = fakeSong.map((item) => item.track.albumName);
+    return allAlbumName;
+  }
+
+  getAllAlbum();
 
   async function playSound(songUrl) {
     console.log("Loading Sound");
@@ -125,11 +131,10 @@ export default function RandomSong() {
           title="random song"
           onPress={() => {
             getRandomTrack();
-            //soundUrl
           }}
         />
 
-        <RandomOptions selectedAlbum={album} />
+        <RandomOptions selectedAlbum={album} allAlbumName={allAlbumName} />
       </SafeAreaView>
     </View>
   );

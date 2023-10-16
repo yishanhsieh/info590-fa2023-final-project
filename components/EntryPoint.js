@@ -12,7 +12,7 @@ export default function EntryPoint({ navigation }) {
       />
       <Button
         title={"Join the Game"}
-        onPress={() => navigation.navigate("RandomOption")}
+        onPress={() => navigation.navigate("RandomSong")}
       />
     </View>
   );
