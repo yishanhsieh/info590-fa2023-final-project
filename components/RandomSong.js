@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 import axios from "axios";
 import RandomOptions from "./RandomOptions";
+import "dotenv/config";
 
 const fakeSong = [
   {
@@ -68,7 +69,7 @@ export default function RandomSong() {
         },
         headers: {
           "X-RapidAPI-Key":
-            "64ce64b6e5msh65817e0e1e29fc9p1afae2jsnb989f18d4c59",
+            {process.env.secretKey},
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       });
