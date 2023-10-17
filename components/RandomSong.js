@@ -69,7 +69,7 @@ export default function RandomSong() {
         },
         headers: {
           "X-RapidAPI-Key":
-            {process.env.secretKey},
+            "64ce64b6e5msh65817e0e1e29fc9p1afae2jsnb989f18d4c59",
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       });
