@@ -6,7 +6,8 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   //randomly select three options from allAlbumName array
   // add selectedAlbum in to the array
   // randomize the arrary order
-  let optionAlbum = [];
+  //let optionAlbum = [];
+  const [optionAlbum, setOptionAlbum] = useState([]);
   const [showRandomOptions, setShowRandomOptions] = useState(false);
 
   useEffect(() => {
@@ -21,16 +22,21 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   }, [selectedAlbum]);
 
   function getRandomOptions() {
-    while (optionAlbum.length < 3) {
+    let optionAlbumList = [];
+    while (optionAlbumList.length < 3) {
       const randomId = Math.floor(Math.random() * allAlbumName.length);
       let randomAlbum = allAlbumName[randomId];
-      if (!optionAlbum.includes(randomAlbum) && randomAlbum !== selectedAlbum) {
-        optionAlbum.push(randomAlbum);
+      if (
+        !optionAlbumList.includes(randomAlbum) &&
+        randomAlbum !== selectedAlbum
+      ) {
+        optionAlbumList.push(randomAlbum);
       }
     }
-    optionAlbum.push(selectedAlbum); //add the correct answer into options
+    optionAlbumList.push(selectedAlbum); //add the correct answer into options
+    setOptionAlbum(optionAlbumList);
     console.log("unShuffle array: ", optionAlbum);
-    shuffleArray(optionAlbum);
+    shuffleArray(optionAlbumList);
     console.log("shuffled array:", optionAlbum);
   }
 
