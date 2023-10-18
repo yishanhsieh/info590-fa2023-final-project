@@ -7,7 +7,18 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   // add selectedAlbum in to the array
   // randomize the arrary order
   let optionAlbum = [];
-  getRandomOptions();
+  const [showRandomOptions, setShowRandomOptions] = useState(false);
+
+  useEffect(() => {
+    if (selectedAlbum) {
+      setShowRandomOptions(true);
+      getRandomOptions();
+    } else {
+      setShowRandomOptions(false);
+    }
+    console.log("selectedAlbum:", selectedAlbum);
+    console.log("showRandomOptions:", showRandomOptions);
+  }, [selectedAlbum]);
 
   function getRandomOptions() {
     while (optionAlbum.length < 3) {
@@ -19,6 +30,8 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
     }
     optionAlbum.push(selectedAlbum); //add the correct answer into options
     console.log("unShuffle array: ", optionAlbum);
+    shuffleArray(optionAlbum);
+    console.log("shuffled array:", optionAlbum);
   }
 
   function shuffleArray(array) {
@@ -28,9 +41,6 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
     }
     return array;
   }
-
-  shuffleArray(optionAlbum);
-  console.log("shuffled array:", optionAlbum);
 
   const renderItem = ({ item }) => {
     return (
@@ -48,9 +58,11 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
         <Text>All albumName: {allAlbumName}</Text>
       </View>
 
-      <View style={{ margin: 10 }}>
-        <FlatList data={optionAlbum} renderItem={renderItem} />
-      </View>
+      {showRandomOptions && (
+        <View style={{ margin: 10 }}>
+          <FlatList data={optionAlbum} renderItem={renderItem} />
+        </View>
+      )}
     </View>
   );
 }

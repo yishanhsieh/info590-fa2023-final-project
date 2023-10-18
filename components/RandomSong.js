@@ -1,16 +1,7 @@
 import * as React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  FlatList,
-  Image,
-  SafeAreaView,
-} from "react-native";
+import { View, StyleSheet, Button, SafeAreaView } from "react-native";
 import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
-import axios from "axios";
 import RandomOptions from "./RandomOptions";
 
 const fakeSong = [
@@ -54,7 +45,10 @@ const fakeSong = [
 export default function RandomSong() {
   const [album, SetAlbum] = useState("");
   const [sound, setSound] = useState("");
-  let allAlbumName = [];
+  const [randomId, setRandomId] = useState(
+    Math.floor(Math.random() * fakeSong.length)
+  );
+  const allAlbumName = fakeSong.map((item) => item.track.albumName);
 
   /*  const getTrack =  async () => {
     try {
@@ -90,20 +84,22 @@ export default function RandomSong() {
     );
   }; */
 
-  const getRandomTrack = () => {
-    const randomId = Math.floor(Math.random() * fakeSong.length);
-    const selectedAlbum = fakeSong[randomId].track.albumName;
-    const selectedSong = fakeSong[randomId].track.songUrl;
-    SetAlbum(selectedAlbum);
-    playSound(selectedSong);
-  };
-
-  function getAllAlbum() {
-    allAlbumName = fakeSong.map((item) => item.track.albumName);
-    return allAlbumName;
+  function getRandomTrack() {
+    id = Math.floor(Math.random() * fakeSong.length);
+    if (id != randomId) {
+      setRandomId(id);
+      const selectedAlbum = fakeSong[randomId].track.albumName;
+      const selectedSong = fakeSong[randomId].track.songUrl;
+      SetAlbum(selectedAlbum);
+      playSound(selectedSong);
+    }
   }
 
-  getAllAlbum();
+  const handlePress = () => {
+    // if press the button, get a random ID ==> random songURl & album name
+
+    getRandomTrack();
+  };
 
   async function playSound(songUrl) {
     console.log("Loading Sound");
@@ -127,13 +123,7 @@ export default function RandomSong() {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Button
-          title="random song"
-          onPress={() => {
-            getRandomTrack();
-          }}
-        />
-
+        <Button title="random song" onPress={handlePress} />
         <RandomOptions selectedAlbum={album} allAlbumName={allAlbumName} />
       </SafeAreaView>
     </View>
