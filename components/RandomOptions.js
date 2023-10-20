@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList, Button, Alert } from "react-native";
+import Checker from "./Checker";
 
 export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   //randomly select three options from allAlbumName array
@@ -9,11 +10,14 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   //let optionAlbum = [];
   const [optionAlbum, setOptionAlbum] = useState([]);
   const [showRandomOptions, setShowRandomOptions] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     if (selectedAlbum) {
       setShowRandomOptions(true);
       getRandomOptions();
+
+      setSelectedOption(null);
     } else {
       setShowRandomOptions(false);
     }
@@ -51,7 +55,12 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   const renderItem = ({ item }) => {
     return (
       <View>
-        <Text>Random options: {item} </Text>
+        <Button
+          title={item}
+          onPress={() => {
+            setSelectedOption(item);
+          }}
+        />
       </View>
     );
   };
@@ -67,6 +76,7 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
       {showRandomOptions && (
         <View style={{ margin: 10 }}>
           <FlatList data={optionAlbum} renderItem={renderItem} />
+          <Checker answer={selectedAlbum} selectedOption={selectedOption} />
         </View>
       )}
     </View>

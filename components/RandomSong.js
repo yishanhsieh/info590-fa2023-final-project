@@ -95,9 +95,9 @@ export default function RandomSong() {
     }
   }
 
-  const handlePress = () => {
-    // if press the button, get a random ID ==> random songURl & album name
+  //if selected Item is correct, goRandomTrack();
 
+  const handlePress = () => {
     getRandomTrack();
   };
 

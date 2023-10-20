@@ -15,6 +15,7 @@ export default function App() {
         <Stack.Screen
           name="EntryPoint"
           component={EntryPoint}
+          d
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
