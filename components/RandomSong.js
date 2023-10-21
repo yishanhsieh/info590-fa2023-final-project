@@ -43,7 +43,7 @@ const fakeSong = [
 ];
 
 export default function RandomSong() {
-  const [album, SetAlbum] = useState("");
+  const [album, setAlbum] = useState("");
   const [sound, setSound] = useState("");
   const [randomId, setRandomId] = useState(
     Math.floor(Math.random() * fakeSong.length)
@@ -66,8 +66,10 @@ export default function RandomSong() {
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       });
-      const tracks = response.data.items; 
-      SetAlbum(tracks); 
+      const tracks = response.data.items;  // tracks is an array
+     
+      
+      
     } catch (err) {
       console.log(err.message);
     }
@@ -90,7 +92,7 @@ export default function RandomSong() {
       setRandomId(id);
       const selectedAlbum = fakeSong[randomId].track.albumName;
       const selectedSong = fakeSong[randomId].track.songUrl;
-      SetAlbum(selectedAlbum);
+      setAlbum(selectedAlbum);
       playSound(selectedSong);
     }
   }

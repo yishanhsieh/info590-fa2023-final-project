@@ -38,10 +38,11 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
       }
     }
     optionAlbumList.push(selectedAlbum); //add the correct answer into options
-    setOptionAlbum(optionAlbumList);
-    console.log("unShuffle array: ", optionAlbum);
+
+    console.log("unshuffled array: ", optionAlbumList);
     shuffleArray(optionAlbumList);
-    console.log("shuffled array:", optionAlbum);
+    console.log("shuffled array:", optionAlbumList);
+    setOptionAlbum(optionAlbumList);
   }
 
   function shuffleArray(array) {
