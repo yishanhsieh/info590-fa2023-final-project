@@ -26,7 +26,7 @@ Task management tool: HackMD (sync to the readme file)
 | v           | answer logics     | correct status                                   | 10/31 |
 | v           |                   | incorrect status                                 | 10/31 |
 |             |                   | Beautify the layout                              | 11/7  |
-|             |                   | Change fake data to API data                     | 11/7  |
+| v           |                   | Change fake data to API data                     | 11/7  |
 | strech goal | Random Quesiton   | randomly select five songs                       | 11/14 |
 |             |                   | show how many questions answered / all           | 11/14 |
 |             |                   | when correct, the bkgColor turns green           | 11/14 |
