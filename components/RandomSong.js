@@ -47,10 +47,9 @@ export default function RandomSong() {
   const [album, setAlbum] = useState("");
   const [sound, setSound] = useState("");
   const [randomId, setRandomId] = useState(Math.floor(Math.random() * 7));
-  /*  const [allAlbumName, setAllAlbumName] = useState([]) */
-  const [tracks, setTracks] = useState();
-  console.log("default Track:", tracks);
-  const allAlbumName = [];
+  const [tracks, setTracks] = useState([]);
+  const [allAlbumName, setAllAlbumName] = useState(); /* 
+  let allAlbumName = []; */
 
   const getTrack = async () => {
     try {
@@ -63,15 +62,14 @@ export default function RandomSong() {
           limit: "10",
         },
         headers: {
-          "X-RapidAPI-Key":
-            "7c6d6eb98emsh589958226957ca7p1477b5jsn68390f9135c0",
+          "X-RapidAPI-Key": process.env.EXPO_PUBLIC_API_KEY,
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       });
       const items = response.data.items;
-      setTracks(items);
       console.log("items: ", items);
-      console.log("tracks: ", tracks);
+      setTracks(items);
+      setAllAlbumName(items.map((item) => item.track.name));
     } catch (err) {
       console.log(err.message);
     }
