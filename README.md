@@ -8,26 +8,28 @@ project plan: https://docs.google.com/document/d/1t15SbiCAqZoMu0GFLgzn3APV9Gcw8u
 
 github: https://github.com/yishanhsieh/info590-fa2023-final-project
 
+Task management tool: HackMD (sync to the readme file)
+
 ---
 
 ### Task Management (To-do)
 
 
-| Status | Item              | Task                                             | Due   |
-| ------ | ----------------- | ------------------------------------------------ | ----- |
-| v      | EntryPoint screen | move from entry to question                      | 10/17 |
-| v      |                   | Basic layout                                     | 10/17 |
-| v      | Random questions  | Test get playlist API(album metadata & song url) | 10/17 |
-| v      |                   | randomly get songs                               | 10/24 |
-| v      | Random options    | randomly get 3 random options + correct answer   | 10/24 |
-| v      |                   | regenerate options & song when clicking a button | 10/24 |
-|        | answer logics     | correct status                                   | 10/31 |
-|        |                   | incorrect status                                 | 10/31 |
-|        |                   | Change fake data to API data                     | 10/31 |
-|        | result page       | a button to restart a new run                    | 11/7  |
-|        |                   |                                                  |       |
-|        |                   |                                                  |       |
-
+| Status      | Item              | Task                                             | Due   |
+| ----------- | ----------------- | ------------------------------------------------ | ----- |
+| v           | EntryPoint screen | move from entry to question                      | 10/17 |
+| v           |                   | Basic layout                                     | 10/17 |
+| v           | Random questions  | Test get playlist API(album metadata & song url) | 10/17 |
+| v           |                   | randomly get songs                               | 10/24 |
+| v           | Random options    | randomly get 3 random options + correct answer   | 10/24 |
+| v           |                   | regenerate options & song when clicking a button | 10/24 |
+| v           | answer logics     | correct status                                   | 10/31 |
+| v           |                   | incorrect status                                 | 10/31 |
+|             |                   | Beautify the layout                              | 11/7  |
+|             |                   | Change fake data to API data                     | 11/7  |
+| strech goal | Random Quesiton   | randomly select five songs                       | 11/14 |
+|             |                   | show how many questions answered / all           | 11/14 |
+|             |                   | when correct, the bkgColor turns green           | 11/14 |
 
  
 ---
@@ -61,10 +63,25 @@ https://github.com/tigarcia/SongGuessingGame
 React Navigation
 https://reactnavigation.org/docs/navigating/
 
+Let's build a quiz app with React Native | Expo
+https://www.youtube.com/watch?v=esWUVic6IcU&t=2359s
+
+
 
 
 # **---note taking---**
 
+## [git]replace main by a branch
+https://stackoverflow.com/questions/40864278/git-fixing-conflict-between-master-and-feature-branch-before-pull-request
+
+
+## process Env version problem
+https://docs.expo.dev/guides/environment-variables/
+
+
+## how to make music Options init status = null
+
+## playSound asynchronously to avoid wrong execution order.
 :question: why the song played is always a step behind the albumname?
 
 :robot_face: Due to the order of execution of **asynchronous** functions and the timing of state updates in your code, when you call playSound(songUrl) immediately **after** calling getRandomTrack(), it doesn't guarantee that the songUrl state will be updated before you call playSound().
