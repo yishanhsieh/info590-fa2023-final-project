@@ -3,8 +3,9 @@ import { View, StyleSheet, Button, SafeAreaView } from "react-native";
 import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 import RandomOptions from "./RandomOptions";
+import axios from "axios";
 
-const fakeSong = [
+/* const fakeSong = [
   {
     track: {
       albumName: "ピースサイン",
@@ -40,17 +41,18 @@ const fakeSong = [
         "https://p.scdn.co/mp3-preview/dac115f1d54820a7b1f7591f2cdd1576bf840b14?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
     },
   },
-];
+]; */
 
 export default function RandomSong() {
   const [album, setAlbum] = useState("");
   const [sound, setSound] = useState("");
-  const [randomId, setRandomId] = useState(
-    Math.floor(Math.random() * fakeSong.length)
-  );
-  const allAlbumName = fakeSong.map((item) => item.track.albumName);
+  const [randomId, setRandomId] = useState(Math.floor(Math.random() * 7));
+  /*  const [allAlbumName, setAllAlbumName] = useState([]) */
+  const [tracks, setTracks] = useState();
+  console.log("default Track:", tracks);
+  const allAlbumName = [];
 
-  /*  const getTrack =  async () => {
+  const getTrack = async () => {
     try {
       const response = await axios({
         method: "GET",
@@ -62,36 +64,29 @@ export default function RandomSong() {
         },
         headers: {
           "X-RapidAPI-Key":
-            process.env.EXPO_PUBLIC_API_KEY,
+            "7c6d6eb98emsh589958226957ca7p1477b5jsn68390f9135c0",
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       });
-      const tracks = response.data.items;  // tracks is an array
-     
-      
-      
+      const items = response.data.items;
+      setTracks(items);
+      console.log("items: ", items);
+      console.log("tracks: ", tracks);
     } catch (err) {
       console.log(err.message);
     }
-  } */ /*  useEffect(() => {
-    getTrack();
-  }, []); */
+  };
 
-  /*   const renderItem = ({ item }) => {
-    return (
-      <View>
-        <Text>Album: {item.track.albumName}</Text>
-        source={{ uri: item.track.album.images[0].url }} 
-      </View>
-    );
-  }; */
+  useEffect(() => {
+    getTrack();
+  }, []);
 
   function getRandomTrack() {
-    id = Math.floor(Math.random() * fakeSong.length);
+    id = Math.floor(Math.random() * tracks.length);
     if (id != randomId) {
       setRandomId(id);
-      const selectedAlbum = fakeSong[randomId].track.albumName;
-      const selectedSong = fakeSong[randomId].track.songUrl;
+      const selectedAlbum = tracks[randomId].track.name;
+      const selectedSong = tracks[randomId].track.preview_url;
       setAlbum(selectedAlbum);
       playSound(selectedSong);
     }
@@ -103,10 +98,10 @@ export default function RandomSong() {
     getRandomTrack();
   };
 
-  async function playSound(songUrl) {
+  async function playSound(preview_url) {
     console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync({
-      uri: songUrl,
+      uri: preview_url,
     });
     setSound(sound);
 

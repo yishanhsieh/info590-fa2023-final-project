@@ -1,0 +1,362 @@
+[
+    {
+        "added_at": "2023-10-04T03:52:47Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "Dl9v-IqtRU-RyCKFtGfbMA",
+            "share_url": "https://open.spotify.com/track/2DLrgv7HhJanCuD8L9uJLR?si=Dl9v-IqtRU-RyCKFtGfbMA",
+            "uri": "spotify:track:2DLrgv7HhJanCuD8L9uJLR"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 285880,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "2DLrgv7HhJanCuD8L9uJLR",
+            "is_local": false,
+            "is_playable": true,
+            "linked_from": [Object
+            ],
+            "name": "Zenzenzense - movie ver.",
+            "popularity": 67,
+            "preview_url": "https://p.scdn.co/mp3-preview/b07586c201cd3fbd336c84fb14d433c75edf52a3?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 8,
+            "type": "track",
+            "uri": "spotify:track:2DLrgv7HhJanCuD8L9uJLR"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T03:52:58Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "bN_G0n2eSjSQnNklw-BBFQ",
+            "share_url": "https://open.spotify.com/track/0qMip0B2D4ePEjBJvAtYre?si=bN_G0n2eSjSQnNklw-BBFQ",
+            "uri": "spotify:track:0qMip0B2D4ePEjBJvAtYre"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 237586,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "0qMip0B2D4ePEjBJvAtYre",
+            "is_local": false,
+            "is_playable": true,
+            "linked_from": [Object
+            ],
+            "name": "紅蓮華",
+            "popularity": 76,
+            "preview_url": "https://p.scdn.co/mp3-preview/f76ce8208d4a829fdc8a1fa568bfbd14a6fb9b6f?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 2,
+            "type": "track",
+            "uri": "spotify:track:0qMip0B2D4ePEjBJvAtYre"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T03:53:07Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "XDnP9uFtS-G05KdEFiIsFA",
+            "share_url": "https://open.spotify.com/track/0cSkn2l67csUljEy0EEBPn?si=XDnP9uFtS-G05KdEFiIsFA",
+            "uri": "spotify:track:0cSkn2l67csUljEy0EEBPn"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 275000,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "0cSkn2l67csUljEy0EEBPn",
+            "is_local": false,
+            "is_playable": true,
+            "name": "炎",
+            "popularity": 65,
+            "preview_url": "https://p.scdn.co/mp3-preview/dac115f1d54820a7b1f7591f2cdd1576bf840b14?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 1,
+            "type": "track",
+            "uri": "spotify:track:0cSkn2l67csUljEy0EEBPn"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T03:53:30Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "Fg_9RDpRQmikhpes7UMxUg",
+            "share_url": "https://open.spotify.com/track/27iksNpaur1CcH0w8703by?si=Fg_9RDpRQmikhpes7UMxUg",
+            "uri": "spotify:track:27iksNpaur1CcH0w8703by"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 90000,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "27iksNpaur1CcH0w8703by",
+            "is_local": false,
+            "is_playable": true,
+            "linked_from": [Object
+            ],
+            "name": "Shinzo wo Sasageyo! - TV Size",
+            "popularity": 62,
+            "preview_url": "https://p.scdn.co/mp3-preview/3692e9178dddd07706471fdce5145c3d80d228d8?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 1,
+            "type": "track",
+            "uri": "spotify:track:27iksNpaur1CcH0w8703by"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T03:53:52Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "K5S6F0r6TDalbcMj-zRGMw",
+            "share_url": "https://open.spotify.com/track/6y4GYuZszeXNOXuBFsJlos?si=K5S6F0r6TDalbcMj-zRGMw",
+            "uri": "spotify:track:6y4GYuZszeXNOXuBFsJlos"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 221426,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "6y4GYuZszeXNOXuBFsJlos",
+            "is_local": false,
+            "is_playable": true,
+            "linked_from": [Object
+            ],
+            "name": "Kaikai Kitan",
+            "popularity": 77,
+            "preview_url": "https://p.scdn.co/mp3-preview/f8d3e24ffde4ff834976fd45a1f25970b3078cf4?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 1,
+            "type": "track",
+            "uri": "spotify:track:6y4GYuZszeXNOXuBFsJlos"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T03:55:25Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "qEs2pmEGSHutIMe07eXdsg",
+            "share_url": "https://open.spotify.com/track/3RFL9hE5cBocBsjD5XLJLQ?si=qEs2pmEGSHutIMe07eXdsg",
+            "uri": "spotify:track:3RFL9hE5cBocBsjD5XLJLQ"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 213438,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "3RFL9hE5cBocBsjD5XLJLQ",
+            "is_local": false,
+            "is_playable": true,
+            "name": "Mixed Nuts",
+            "popularity": 65,
+            "preview_url": "https://p.scdn.co/mp3-preview/29835f60d950690479753cf1c8c5009b57ae5670?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 1,
+            "type": "track",
+            "uri": "spotify:track:3RFL9hE5cBocBsjD5XLJLQ"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T03:55:33Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "tka0Jv_wQwS9Det81F-MMg",
+            "share_url": "https://open.spotify.com/track/1KXljGA4uAwV5FJFilkpme?si=tka0Jv_wQwS9Det81F-MMg",
+            "uri": "spotify:track:1KXljGA4uAwV5FJFilkpme"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 226768,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "1KXljGA4uAwV5FJFilkpme",
+            "is_local": false,
+            "is_playable": true,
+            "name": "The Hero! (One Punch Man)",
+            "popularity": 35,
+            "preview_url": "https://p.scdn.co/mp3-preview/78bb89b5af202eca6a98bfc4383eb7805be6412d?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 1,
+            "type": "track",
+            "uri": "spotify:track:1KXljGA4uAwV5FJFilkpme"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    },
+    {
+        "added_at": "2023-10-04T18:23:58Z",
+        "added_by": {
+            "external_urls": [Object
+            ],
+            "id": "11173190705",
+            "type": "user",
+            "uri": "spotify:user:11173190705"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "sharing_info": {
+            "share_id": "ep3zbOQXSTKCMLDj0xuE-Q",
+            "share_url": "https://open.spotify.com/track/364JzOajs76bJymjHm3sVY?si=ep3zbOQXSTKCMLDj0xuE-Q",
+            "uri": "spotify:track:364JzOajs76bJymjHm3sVY"
+        },
+        "track": {
+            "album": [Object
+            ],
+            "artists": [Array
+            ],
+            "disc_number": 1,
+            "duration_ms": 238533,
+            "episode": false,
+            "explicit": false,
+            "external_ids": [Object
+            ],
+            "external_urls": [Object
+            ],
+            "id": "364JzOajs76bJymjHm3sVY",
+            "is_local": false,
+            "is_playable": true,
+            "name": "ピースサイン",
+            "popularity": 73,
+            "preview_url": "https://p.scdn.co/mp3-preview/e4ff9d81aaa848d09bb60899f4a0b818b42428fb?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+            "track": true,
+            "track_number": 3,
+            "type": "track",
+            "uri": "spotify:track:364JzOajs76bJymjHm3sVY"
+        },
+        "video_thumbnail": {
+            "url": null
+        }
+    }
+]
