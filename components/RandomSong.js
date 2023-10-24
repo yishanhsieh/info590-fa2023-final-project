@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet, Button, SafeAreaView } from "react-native";
+import { View, StyleSheet, Button, SafeAreaView, Text } from "react-native";
 import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 import RandomOptions from "./RandomOptions";
@@ -46,10 +46,9 @@ import axios from "axios";
 export default function RandomSong() {
   const [album, setAlbum] = useState("");
   const [sound, setSound] = useState("");
-  const [randomId, setRandomId] = useState(Math.floor(Math.random() * 7));
+  const [randomId, setRandomId] = useState();
   const [tracks, setTracks] = useState([]);
-  const [allAlbumName, setAllAlbumName] = useState(); /* 
-  let allAlbumName = []; */
+  const [allAlbumName, setAllAlbumName] = useState();
 
   const getTrack = async () => {
     try {
@@ -59,7 +58,7 @@ export default function RandomSong() {
         params: {
           id: "2siMQsSv15yXBDdjmUSfJX",
           offset: "0",
-          limit: "10",
+          limit: "30",
         },
         headers: {
           "X-RapidAPI-Key": process.env.EXPO_PUBLIC_API_KEY,
@@ -70,6 +69,7 @@ export default function RandomSong() {
       console.log("items: ", items);
       setTracks(items);
       setAllAlbumName(items.map((item) => item.track.name));
+      setRandomId(Math.floor(Math.random() * items.length));
     } catch (err) {
       console.log(err.message);
     }
@@ -117,10 +117,12 @@ export default function RandomSong() {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <View style={{ marginBottom: 30 }}>
+        <Text>Click 'Random Song' to start the game</Text>
         <Button title="random song" onPress={handlePress} />
-        <RandomOptions selectedAlbum={album} allAlbumName={allAlbumName} />
-      </SafeAreaView>
+      </View>
+
+      <RandomOptions selectedAlbum={album} allAlbumName={allAlbumName} />
     </View>
   );
 }

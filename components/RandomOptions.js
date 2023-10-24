@@ -55,7 +55,7 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
 
   const renderItem = ({ item }) => {
     return (
-      <View>
+      <View style={{ margin: 5 }}>
         <Button
           title={item}
           onPress={() => {
@@ -68,11 +68,11 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
 
   return (
     <View>
-      <Text>Song playing: {selectedAlbum}</Text>
+      {/*  <Text>Song playing: {selectedAlbum}</Text>
 
       <View style={{ margin: 10 }}>
         <Text>All albumName: {allAlbumName}</Text>
-      </View>
+      </View> */}
 
       {showRandomOptions && (
         <View style={{ margin: 10 }}>
