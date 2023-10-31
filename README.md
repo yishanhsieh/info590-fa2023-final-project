@@ -25,7 +25,9 @@ Task management tool: HackMD (sync to the readme file)
 | v           |                   | regenerate options & song when clicking a button | 10/24 |
 | v           | answer logics     | correct status                                   | 10/31 |
 | v           |                   | incorrect status                                 | 10/31 |
-|             |                   | Beautify the layout                              | 11/7  |
+| v           | Layout design     | Beautify the entrypoint page                     | 10/31 |
+|             |                   | Beautify the layout - random song page           | 11/7  |
+|             |                   | Show options with albumName and albumImge        | 11/7  |
 | v           |                   | Change fake data to API data                     | 11/7  |
 | strech goal | Random Quesiton   | randomly select five songs                       | 11/14 |
 |             |                   | show how many questions answered / all           | 11/14 |
@@ -70,6 +72,21 @@ https://www.youtube.com/watch?v=esWUVic6IcU&t=2359s
 
 
 # **---note taking---**
+
+
+## Text shadow
+- This stackoverflow provides Snack example: https://stackoverflow.com/questions/62497218/react-native-textshadow-not-rendering-well-on-sides
+
+## Button shadow
+- Notes: IOS and Android render button shadow differently. Android requires `elevation`, while IOS supports props like `shadowColor` . Be sure to use a condition (if it's IOS, then blablabla) or just write both props.
+- Resource: https://docs.expo.dev/ui-programming/react-native-styling-buttons/
+
+## Custom fonts
+- Install : ``` npx expo install expo-font```
+resource: https://docs.expo.dev/versions/latest/sdk/font/#installation
+ - Notes: You got to download the fond file into ./assest/fonts, and it seems only Inter-Black works. [The Google Fonts expo packages](https://docs.expo.dev/develop/user-interface/fonts/#use-a-google-font) claim to work out but it doesn't.The log said they cannot locate the font. 
+ 
+
 
 ## [git]replace main by a branch
 https://stackoverflow.com/questions/40864278/git-fixing-conflict-between-master-and-feature-branch-before-pull-request
