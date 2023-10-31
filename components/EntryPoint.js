@@ -1,19 +1,66 @@
-import * as React from "react";
-import { Text, View, StyleSheet, Image, Button } from "react-native";
+import { useCallback } from "react";
+import { useFonts } from "expo-font";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Button,
+  Pressable,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
+import * as SplashScreen from "expo-splash-screen";
+
+//if font isn't ready, show Splash Screen
+SplashScreen.preventAutoHideAsync();
 
 export default function EntryPoint({ navigation }) {
+  //use custom font
+  const [fontsLoaded] = useFonts({
+    "Inter-Black": require("./../assets/fonts/Inter-Black.otf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Welcome to</Text>
-      <Text style={styles.secondheader}> Guess Song game</Text>
-      <Image
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      <ImageBackground
+        source={require("../assets/background.png")}
+        resizeMode="cover"
         style={styles.image}
-        source={require("../assets/musical-notes.png")}
-      />
-      <Button
-        title={"Join the Game"}
-        onPress={() => navigation.navigate("RandomSong")}
-      />
+      >
+        <View style={styles.contentContainer}>
+          <View style={{ flex: 0.6 }}></View>
+          <View style={{ flex: 0.4 }}>
+            <View style={{ flex: 0.3 }}>
+              <Text style={styles.header}>Anime Song Guess</Text>
+            </View>
+            <View style={{ flex: 0.3, alignItems: "center" }}>
+              <Text style={styles.description}>
+                Enjoy the worldwide popular anime songs
+              </Text>
+            </View>
+            <View style={{ flex: 0.4, alignItems: "center" }}>
+              <TouchableOpacity
+                style={[styles.Button, styles.shadowProp]}
+                title={"Join the Game"}
+                onPress={() => navigation.navigate("RandomSong")}
+              >
+                <Text style={styles.text}>{(title = "Join the Game")}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -21,29 +68,50 @@ export default function EntryPoint({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
-    padding: 10,
+  },
+  contentContainer: {
+    alignItems: "center",
+    flex: 1,
   },
   header: {
-    fontWeight: "bold",
-    fontSize: 30,
-    color: "red",
-    marginTop: 30,
-    alignSelf: "center",
-    justifyContent: "center",
+    color: "#3D30A2",
+    fontSize: 36,
+    textAlign: "center",
+    fontFamily: "Inter-Black",
+    textShadowColor: "darkgray",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4,
+    alignItems: "center",
   },
-  secondheader: {
-    fontWeight: "bold",
-    fontSize: 30,
-    color: "red",
-    marginBottom: 30,
-    alignSelf: "center",
+  description: {
+    color: "#3D30A2",
+    fontSize: 20,
+    textAlign: "center",
+    width: 303,
   },
   image: {
-    width: 150,
-    height: 150,
-    marginBottom: 40,
-    alignSelf: "center",
+    flex: 1,
+  },
+  Button: {
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 39,
+    width: 212,
+    backgroundColor: "#FFA33C",
+  },
+  shadowProp: {
+    shadowColor: "#171717",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
   },
 });
