@@ -49,7 +49,6 @@ export default function RandomSong() {
   const [albumImg, setAlbumImg] = useState("");
   const [randomId, setRandomId] = useState();
   const [tracks, setTracks] = useState([]);
-  const [allAlbumName, setAllAlbumName] = useState();
   const [allAlbumInfo, setAllAlbumInfo] = useState();
 
   const getTrack = async () => {
@@ -70,9 +69,6 @@ export default function RandomSong() {
       const items = response.data.items;
       console.log("items: ", items);
       setTracks(items);
-      setAllAlbumName(items.map((item) => item.track.name)); //adjust to accomodate both name and image
-      setRandomId(Math.floor(Math.random() * items.length));
-
       setAllAlbumInfo(
         items.map((item) => {
           return {
@@ -81,7 +77,7 @@ export default function RandomSong() {
           };
         })
       );
-      console.log(allAlbumInfo);
+      setRandomId(Math.floor(Math.random() * items.length));
     } catch (err) {
       console.log(err.message);
     }
@@ -137,7 +133,7 @@ export default function RandomSong() {
       <RandomOptions
         selectedAlbum={album}
         selectedAlbumImg={albumImg}
-        allAlbumName={allAlbumName}
+        allAlbumInfo={allAlbumInfo}
       />
     </View>
   );

@@ -1,33 +1,28 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { Text, View, FlatList, Button, StyleSheet } from "react-native";
 import Checker from "./Checker";
 
 export default function RandomOptions({
   selectedAlbum,
-  allAlbumName,
   selectedAlbumImg,
+  allAlbumInfo,
 }) {
   //randomly select three options from allAlbumName array
   // add selectedAlbum in to the array
   // randomize the arrary order
   //let optionAlbum = [];
-  const [optionAlbum, setOptionAlbum] = useState([]);
+  /* const [optionAlbum, setOptionAlbum] = useState([]); */
   const [showRandomOptions, setShowRandomOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [optionAlbumList, setOptionAlbumList] = useState([
+    { optionAlbumName: selectedAlbum, optionAlbumImg: selectedAlbumImg },
+  ]);
 
   useEffect(() => {
     if (selectedAlbum) {
       setShowRandomOptions(true);
       getRandomOptions();
-
       setSelectedOption(null);
     } else {
       setShowRandomOptions(false);
@@ -37,23 +32,41 @@ export default function RandomOptions({
   }, [selectedAlbum]);
 
   function getRandomOptions() {
-    let optionAlbumList = [];
     while (optionAlbumList.length < 3) {
-      const randomId = Math.floor(Math.random() * allAlbumName.length);
-      let randomAlbum = allAlbumName[randomId];
+      const randomId = Math.floor(Math.random() * allAlbumInfo.length);
+      let randomAlbum = allAlbumInfo[randomId].albumName; //allAlbumName[randomID].albumName
+      let randomAlbumImg = allAlbumInfo[randomId].albumImg;
+      let target = { albumName: { randomAlbum } };
+
       if (
-        !optionAlbumList.includes(randomAlbum) &&
-        randomAlbum !== selectedAlbum
+        !optionAlbumList.some(
+          (item) => item.optionAlbumName === target.albumName
+        ) /* &&
+        //the first three options cannot include the answer
+        randomAlbum !== selectedAlbum */
       ) {
-        optionAlbumList.push(randomAlbum);
+        /* optionAlbumList.push(randomAlbum); */
+        let updatedOptionArray = [
+          ...optionAlbumList,
+          {
+            optionAlbumName: randomAlbum,
+            optionAlbumImg: randomAlbumImg,
+          },
+        ];
+
+        setOptionAlbumList(updatedOptionArray);
       }
     }
-    optionAlbumList.push(selectedAlbum); //add the correct answer into options
+
+    /*  optionAlbumList.push({
+      optionAlbumName: selectedAlbum,
+      optionAlbumImg: selectedAlbumImg,
+    }); //add the correct albumName and image into options */
 
     console.log("unshuffled array: ", optionAlbumList);
     shuffleArray(optionAlbumList);
     console.log("shuffled array:", optionAlbumList);
-    setOptionAlbum(optionAlbumList);
+    /* setOptionAlbum(optionAlbumList);  */
   }
 
   function shuffleArray(array) {
@@ -67,8 +80,9 @@ export default function RandomOptions({
   const renderItem = ({ item }) => {
     return (
       <View style={{ margin: 5 }}>
-        <TouchableOpacity
-          title={item}
+        <Image style={styles.image} source={{ url: item.optionAlbumImg }} />
+        <Button
+          title={item.optionAlbumName}
           onPress={() => {
             setSelectedOption(item);
           }}
@@ -87,8 +101,7 @@ export default function RandomOptions({
 
       {showRandomOptions && (
         <View style={{ margin: 10 }}>
-          <Image style={styles.image} source={{ uri: selectedAlbumImg }} />
-          <FlatList data={optionAlbum} renderItem={renderItem} />
+          <FlatList data={optionAlbumList} renderItem={renderItem} />
           <Checker answer={selectedAlbum} selectedOption={selectedOption} />
         </View>
       )}
