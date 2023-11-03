@@ -63,44 +63,30 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
     return array;
   }
 
-  function getButtonIcon({ item }) {
-    if (item === selectedAlbum) {
-      setButtonIcon(<AntDesign name="checkcircle" size={16} color="green" />);
-    }
-    if (item !== selectedAlbum) {
-      setButtonIcon(<AntDesign name="closecircle" size={16} color="red" />);
-    }
-  }
-
-  const renderItem = ({ item }) => {
-    return (
-      <View style={{ justifyContent: "center" }}>
-        <TouchableOpacity
-          style={styles.option}
-          onPress={() => {
-            setSelectedOption(item);
-            getButtonIcon(item);
-          }}
-        >
-          <Text style={styles.btnText}>{item}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   return (
     <View style={{ justifyContent: "center" }}>
       {showRandomOptions && (
         <View>
-          <View style={{ alignItems: "center", margin: 10 }}>
-            <Checker answer={selectedAlbum} selectedOption={selectedOption} />
-          </View>
           <View style={{ justifyContent: "space-evenly" }}>
-            <FlatList
-              numColumns={2}
-              data={optionAlbum}
-              renderItem={renderItem}
-            />
+            {optionAlbum.map((option, index) => (
+              <TouchableOpacity
+                style={styles.option}
+                onPress={() => {
+                  setSelectedOption(option);
+                }}
+              >
+                <Text style={styles.btnText} key={index}>
+                  {selectedOption === selectedAlbum &&
+                  selectedOption === option ? (
+                    <AntDesign name="checkcircle" size={16} color="green" />
+                  ) : selectedOption !== selectedAlbum &&
+                    selectedOption === option ? (
+                    <AntDesign name="closecircle" size={16} color="red" />
+                  ) : null}
+                  {option}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       )}
@@ -123,19 +109,19 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   option: {
-    width: 150,
-    height: 75,
-    margin: 10,
+    width: 250,
+    padding: 10,
+    /* margin: 10, */
     backgroundColor: "#EDEDF0",
     borderRadius: 12,
     borderColor: "#C5B9B9",
     borderWidth: 1,
     justifyContent: "center",
+    alignItems: "center",
   },
   btnText: {
     fontSize: 16,
-
-    padding: 10,
+    /* padding: 10, */
     textAlign: "center",
     color: "#3D30A2",
   },
