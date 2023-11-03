@@ -1,7 +1,17 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Text, View, FlatList, Button, Alert } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  Button,
+  StyleSheet,
+  Image,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import Checker from "./Checker";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   //randomly select three options from allAlbumName array
@@ -11,6 +21,7 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   const [optionAlbum, setOptionAlbum] = useState([]);
   const [showRandomOptions, setShowRandomOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [buttonIcon, setButtonIcon] = useState();
 
   useEffect(() => {
     if (selectedAlbum) {
@@ -52,33 +63,80 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
     return array;
   }
 
+  function getButtonIcon({ item }) {
+    if (item === selectedAlbum) {
+      setButtonIcon(<AntDesign name="checkcircle" size={16} color="green" />);
+    }
+    if (item !== selectedAlbum) {
+      setButtonIcon(<AntDesign name="closecircle" size={16} color="red" />);
+    }
+  }
+
   const renderItem = ({ item }) => {
     return (
-      <View>
-        <Button
-          title={item}
+      <View style={{ justifyContent: "center" }}>
+        <TouchableOpacity
+          style={styles.option}
           onPress={() => {
             setSelectedOption(item);
+            getButtonIcon(item);
           }}
-        />
+        >
+          <Text style={styles.btnText}>{item}</Text>
+        </TouchableOpacity>
       </View>
     );
   };
 
   return (
-    <View>
-      <Text>Song playing: {selectedAlbum}</Text>
-
-      <View style={{ margin: 10 }}>
-        <Text>All albumName: {allAlbumName}</Text>
-      </View>
-
+    <View style={{ justifyContent: "center" }}>
       {showRandomOptions && (
-        <View style={{ margin: 10 }}>
-          <FlatList data={optionAlbum} renderItem={renderItem} />
-          <Checker answer={selectedAlbum} selectedOption={selectedOption} />
+        <View>
+          <View style={{ alignItems: "center", margin: 10 }}>
+            <Checker answer={selectedAlbum} selectedOption={selectedOption} />
+          </View>
+          <View style={{ justifyContent: "space-evenly" }}>
+            <FlatList
+              numColumns={2}
+              data={optionAlbum}
+              renderItem={renderItem}
+            />
+          </View>
         </View>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  heading: {
+    fontSize: 20,
+    alignSelf: "center",
+  },
+  image: {
+    width: 150,
+    height: 150,
+    alignSelf: "center",
+    borderRadius: 16,
+  },
+  option: {
+    width: 150,
+    height: 75,
+    margin: 10,
+    backgroundColor: "#EDEDF0",
+    borderRadius: 12,
+    borderColor: "#C5B9B9",
+    borderWidth: 1,
+    justifyContent: "center",
+  },
+  btnText: {
+    fontSize: 16,
+
+    padding: 10,
+    textAlign: "center",
+    color: "#3D30A2",
+  },
+});
