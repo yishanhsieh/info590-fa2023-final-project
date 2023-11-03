@@ -92,14 +92,25 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
     <View style={{ justifyContent: "center" }}>
       {showRandomOptions && (
         <View>
-          <View style={{ alignItems: "center", margin: 10 }}>
-            <Checker answer={selectedAlbum} selectedOption={selectedOption} />
-          </View>
           <View style={{ justifyContent: "space-evenly" }}>
             {optionAlbum.map((option, index) => (
-              <Pressable key={index}>
-                <Text>{option}</Text>
-              </Pressable>
+              <TouchableOpacity
+                style={styles.option}
+                onPress={() => {
+                  setSelectedOption(option);
+                }}
+              >
+                <Text style={styles.btnText} key={index}>
+                  {selectedOption === selectedAlbum &&
+                  selectedOption === option ? (
+                    <AntDesign name="checkcircle" size={16} color="green" />
+                  ) : selectedOption !== selectedAlbum &&
+                    selectedOption === option ? (
+                    <AntDesign name="closecircle" size={16} color="red" />
+                  ) : null}
+                  {option}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
