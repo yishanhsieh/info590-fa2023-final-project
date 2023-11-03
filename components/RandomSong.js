@@ -1,14 +1,25 @@
 import * as React from "react";
-import { View, StyleSheet, Button, SafeAreaView, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  Button,
+} from "react-native";
 import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 import RandomOptions from "./RandomOptions";
+import ImageBlurShadow from "./ImageBlurShadow";
 import axios from "axios";
 
 /* const fakeSong = [
   {
     track: {
       albumName: "ピースサイン",
+      albumImg:
+        "https://i.scdn.co/image/ab67616d0000b2732b603ffe9f8493e96193e65b",
       songUrl:
         "https://p.scdn.co/mp3-preview/e4ff9d81aaa848d09bb60899f4a0b818b42428fb?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
     },
@@ -16,6 +27,8 @@ import axios from "axios";
   {
     track: {
       albumName: "The Hero! (One Punch Man)",
+      albumImg:
+        "https://i.scdn.co/image/ab67616d0000b2732b603ffe9f8493e96193e65b",
       songUrl:
         "https://p.scdn.co/mp3-preview/78bb89b5af202eca6a98bfc4383eb7805be6412d?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
     },
@@ -23,6 +36,8 @@ import axios from "axios";
   {
     track: {
       albumName: "Shinzo wo Sasageyo! - TV Size",
+      albumImg:
+        "https://i.scdn.co/image/ab67616d0000b2732b603ffe9f8493e96193e65b",
       songUrl:
         "https://p.scdn.co/mp3-preview/3692e9178dddd07706471fdce5145c3d80d228d8?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
     },
@@ -30,6 +45,8 @@ import axios from "axios";
   {
     track: {
       albumName: "Kaikai Kitan",
+      albumImg:
+        "https://i.scdn.co/image/ab67616d0000b2732b603ffe9f8493e96193e65b",
       songUrl:
         "https://p.scdn.co/mp3-preview/f8d3e24ffde4ff834976fd45a1f25970b3078cf4?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
     },
@@ -37,6 +54,8 @@ import axios from "axios";
   {
     track: {
       albumName: "炎",
+      albumImg:
+        "https://i.scdn.co/image/ab67616d0000b2732b603ffe9f8493e96193e65b",
       songUrl:
         "https://p.scdn.co/mp3-preview/dac115f1d54820a7b1f7591f2cdd1576bf840b14?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
     },
@@ -44,13 +63,12 @@ import axios from "axios";
 ]; */
 
 export default function RandomSong() {
-  const [album, setAlbum] = useState("");
+  const [album, SetAlbum] = useState("");
   const [sound, setSound] = useState("");
   const [albumImg, setAlbumImg] = useState("");
   const [randomId, setRandomId] = useState();
   const [tracks, setTracks] = useState([]);
   const [allAlbumName, setAllAlbumName] = useState();
-  const [allAlbumInfo, setAllAlbumInfo] = useState();
 
   const getTrack = async () => {
     try {
@@ -73,14 +91,6 @@ export default function RandomSong() {
       setAllAlbumName(items.map((item) => item.track.name)); //adjust to accomodate both name and image
       setRandomId(Math.floor(Math.random() * items.length));
 
-      setAllAlbumInfo(
-        items.map((item) => {
-          return {
-            albumName: item.track.name,
-            albumImg: item.track.album.images[0].url,
-          };
-        })
-      );
       console.log(allAlbumInfo);
     } catch (err) {
       console.log(err.message);
@@ -98,11 +108,13 @@ export default function RandomSong() {
       const selectedAlbum = tracks[randomId].track.name;
       const selectedSong = tracks[randomId].track.preview_url;
       const selectedAlbumImg = tracks[randomId].track.album.images[0].url;
-      setAlbum(selectedAlbum); //correct answer
-      setAlbumImg(selectedAlbumImg); //correct answer album img
-      playSound(selectedSong); //the song playing
+      SetAlbum(selectedAlbum);
+      setAlbumImg(selectedAlbumImg);
+      playSound(selectedSong);
     }
   }
+
+  //if selected Item is correct, goRandomTrack();
 
   const handlePress = () => {
     getRandomTrack();
@@ -129,16 +141,52 @@ export default function RandomSong() {
 
   return (
     <View style={styles.container}>
-      <View style={{ marginBottom: 30 }}>
-        <Text>Click 'Random Song' to start the game</Text>
-        <Button title="random song" onPress={handlePress} />
+      <View
+        style={{
+          flex: 0.7,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <View style={{ margin: 8, justifyContent: "center" }}>
+          <Text style={styles.heading}>Guess Song</Text>
+        </View>
+        <View>
+          {albumImg && (
+            <ImageBlurShadow
+              style={styles.albumImg}
+              source={{ uri: albumImg }}
+              imageWidth={220}
+              imageHeight={220}
+              imageBorderRadius={22}
+              shadowBackgroundColor="#FFF6DE"
+            />
+          )}
+        </View>
+
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity style={styles.button} onPress={handlePress}>
+            <Text style={styles.text}>Random Song</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      <RandomOptions
-        selectedAlbum={album}
-        selectedAlbumImg={albumImg}
-        allAlbumName={allAlbumName}
-      />
+      {album && (
+        <View
+          style={{
+            flex: 0.3,
+            alignItems: "center",
+            backgroundColor: "white",
+          }}
+        >
+          <RandomOptions selectedAlbum={album} allAlbumName={allAlbumName} />
+        </View>
+      )}
     </View>
   );
 }
@@ -146,15 +194,30 @@ export default function RandomSong() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
-    padding: 10,
-    marginTop: 30,
+    backgroundColor: "#FFF6DE",
   },
-  image: {
-    width: 100,
-    height: 100,
-    margin: 10,
+  albumImg: {
+    marginTop: 20,
     justifyContent: "center",
+    elevation: 4,
+  },
+  heading: {
+    marginTop: 20,
+    color: "#3D30A2",
+    fontSize: 24,
+  },
+  button: {
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 39,
+    width: 212,
+    backgroundColor: "#FFA33C",
+  },
+  text: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "400",
   },
 });

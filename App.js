@@ -11,11 +11,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="EntryPoint">
-        <Stack.Screen name="RandomSong" component={RandomSong} />
+        <Stack.Screen
+          name="RandomSong"
+          component={RandomSong}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="EntryPoint"
           component={EntryPoint}
-          d
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
