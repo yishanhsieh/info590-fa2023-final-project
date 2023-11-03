@@ -12,7 +12,9 @@ import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 import RandomOptions from "./RandomOptions";
 import ImageBlurShadow from "./ImageBlurShadow";
+import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 /* const fakeSong = [
   {
@@ -62,7 +64,7 @@ import axios from "axios";
   },
 ]; */
 
-export default function RandomSong() {
+export default function RandomSong({ navigation }) {
   const [album, SetAlbum] = useState("");
   const [sound, setSound] = useState("");
   const [albumImg, setAlbumImg] = useState("");
@@ -90,8 +92,6 @@ export default function RandomSong() {
       setTracks(items);
       setAllAlbumName(items.map((item) => item.track.name)); //adjust to accomodate both name and image
       setRandomId(Math.floor(Math.random() * items.length));
-
-      console.log(allAlbumInfo);
     } catch (err) {
       console.log(err.message);
     }
@@ -144,11 +144,18 @@ export default function RandomSong() {
       <View
         style={{
           flex: 0.7,
-          justifyContent: "center",
-          alignItems: "center",
         }}
       >
-        <View style={{ margin: 8, justifyContent: "center" }}>
+        <View style={{ flex: 0.5 }}>
+          <Pressable
+            style={{ marginTop: 50, marginLeft: 30, alignSelf: "stretch" }}
+            onPress={() => navigation.navigate("EntryPoint")}
+          >
+            <Ionicons name="arrow-back-circle" size={40} color="#3D30A2" />
+          </Pressable>
+        </View>
+
+        <View style={{ margin: 8 }}>
           <Text style={styles.heading}>Guess Song</Text>
         </View>
         <View>
@@ -198,13 +205,14 @@ const styles = StyleSheet.create({
   },
   albumImg: {
     marginTop: 20,
-    justifyContent: "center",
+    alignSelf: "center",
     elevation: 4,
   },
   heading: {
     marginTop: 20,
     color: "#3D30A2",
     fontSize: 24,
+    textAlign: "center",
   },
   button: {
     alignItems: "center",

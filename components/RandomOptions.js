@@ -21,7 +21,6 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   const [optionAlbum, setOptionAlbum] = useState([]);
   const [showRandomOptions, setShowRandomOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [buttonIcon, setButtonIcon] = useState();
 
   useEffect(() => {
     if (selectedAlbum) {
@@ -49,8 +48,9 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
       }
     }
     optionAlbumList.push(selectedAlbum); //add the correct answer into options
+    console.log("unShuffle array: ", optionAlbumList);
+
     setOptionAlbum(optionAlbumList);
-    console.log("unShuffle array: ", optionAlbum);
     shuffleArray(optionAlbumList);
     console.log("shuffled array:", optionAlbum);
   }
@@ -60,17 +60,18 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+
     return array;
   }
 
-  function getButtonIcon({ item }) {
+  /* function getButtonIcon({ item }) {
     if (item === selectedAlbum) {
       setButtonIcon(<AntDesign name="checkcircle" size={16} color="green" />);
     }
     if (item !== selectedAlbum) {
       setButtonIcon(<AntDesign name="closecircle" size={16} color="red" />);
     }
-  }
+  } */
 
   const renderItem = ({ item }) => {
     return (
@@ -79,7 +80,6 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
           style={styles.option}
           onPress={() => {
             setSelectedOption(item);
-            getButtonIcon(item);
           }}
         >
           <Text style={styles.btnText}>{item}</Text>
@@ -96,11 +96,11 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
             <Checker answer={selectedAlbum} selectedOption={selectedOption} />
           </View>
           <View style={{ justifyContent: "space-evenly" }}>
-            <FlatList
-              numColumns={2}
-              data={optionAlbum}
-              renderItem={renderItem}
-            />
+            {optionAlbum.map((option, index) => (
+              <Pressable key={index}>
+                <Text>{option}</Text>
+              </Pressable>
+            ))}
           </View>
         </View>
       )}
