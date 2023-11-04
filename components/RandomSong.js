@@ -3,18 +3,15 @@ import {
   View,
   StyleSheet,
   Text,
-  Image,
   TouchableOpacity,
   Pressable,
-  Button,
 } from "react-native";
 import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 import RandomOptions from "./RandomOptions";
 import ImageBlurShadow from "./ImageBlurShadow";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 /* const fakeSong = [
   {
@@ -141,24 +138,23 @@ export default function RandomSong({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flex: 0.7,
-        }}
-      >
-        <View style={{ flex: 0.5 }}>
-          <Pressable
-            style={{ marginTop: 50, marginLeft: 30, alignSelf: "stretch" }}
-            onPress={() => navigation.navigate("EntryPoint")}
-          >
-            <Ionicons name="arrow-back-circle" size={40} color="#3D30A2" />
-          </Pressable>
-        </View>
+      <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+        <Pressable
+          style={{
+            marginTop: 30,
+            marginRight: 30,
+          }}
+          onPress={() => navigation.navigate("EntryPoint")}
+        >
+          <AntDesign name="home" size={26} color="black" />
+        </Pressable>
+      </View>
+      <View style={{ flex: 0.7, justifyContent: "center" }}>
+        <View style={{ margin: 12 }}>
+          <Text style={styles.heading}>
+            {!album ? "Pick up a song" : "What the song is?"}
+          </Text>
 
-        <View style={{ margin: 8 }}>
-          <Text style={styles.heading}>Guess Song</Text>
-        </View>
-        <View>
           {albumImg && (
             <ImageBlurShadow
               style={styles.albumImg}
@@ -177,7 +173,10 @@ export default function RandomSong({ navigation }) {
             justifyContent: "center",
           }}
         >
-          <TouchableOpacity style={styles.button} onPress={handlePress}>
+          <TouchableOpacity
+            style={[styles.button, styles.shadowProp]}
+            onPress={handlePress}
+          >
             <Text style={styles.text}>Random Song</Text>
           </TouchableOpacity>
         </View>
@@ -209,10 +208,10 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   heading: {
-    marginTop: 20,
     color: "#3D30A2",
     fontSize: 24,
     textAlign: "center",
+    fontWeight: "700",
   },
   button: {
     alignItems: "center",
@@ -227,5 +226,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "400",
+  },
+  shadowProp: {
+    shadowColor: "#171717",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 5,
   },
 });

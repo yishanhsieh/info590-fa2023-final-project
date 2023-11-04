@@ -10,7 +10,6 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import Checker from "./Checker";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function RandomOptions({ selectedAlbum, allAlbumName }) {
@@ -48,9 +47,8 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
       }
     }
     optionAlbumList.push(selectedAlbum); //add the correct answer into options
-    console.log("unShuffle array: ", optionAlbumList);
-
     setOptionAlbum(optionAlbumList);
+    console.log("unShuffle array: ", optionAlbum);
     shuffleArray(optionAlbumList);
     console.log("shuffled array:", optionAlbum);
   }
@@ -60,59 +58,40 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
-
     return array;
   }
 
-  /* function getButtonIcon({ item }) {
-    if (item === selectedAlbum) {
-      setButtonIcon(<AntDesign name="checkcircle" size={16} color="green" />);
-    }
-    if (item !== selectedAlbum) {
-      setButtonIcon(<AntDesign name="closecircle" size={16} color="red" />);
-    }
-  } */
-
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item: option }) => {
     return (
-      <View style={{ justifyContent: "center" }}>
-        <TouchableOpacity
-          style={styles.option}
-          onPress={() => {
-            setSelectedOption(item);
-          }}
+      <TouchableOpacity
+        style={
+          selectedOption === option ? styles.selectedOption : styles.option
+        }
+        onPress={() => {
+          setSelectedOption(option);
+        }}
+      >
+        <Text
+          style={
+            selectedOption === option ? styles.selectedBtnText : styles.btnText
+          }
         >
-          <Text style={styles.btnText}>{item}</Text>
-        </TouchableOpacity>
-      </View>
+          {selectedOption === selectedAlbum && selectedOption === option ? (
+            <AntDesign name="checkcircle" size={16} color="#53E4B1" />
+          ) : selectedOption !== selectedAlbum && selectedOption === option ? (
+            <AntDesign name="closecircle" size={16} color="#FD8C8C" />
+          ) : null}{" "}
+          {option}
+        </Text>
+      </TouchableOpacity>
     );
   };
 
   return (
-    <View style={{ justifyContent: "center" }}>
+    <View>
       {showRandomOptions && (
-        <View>
-          <View style={{ justifyContent: "space-evenly" }}>
-            {optionAlbum.map((option, index) => (
-              <TouchableOpacity
-                style={styles.option}
-                onPress={() => {
-                  setSelectedOption(option);
-                }}
-              >
-                <Text style={styles.btnText} key={index}>
-                  {selectedOption === selectedAlbum &&
-                  selectedOption === option ? (
-                    <AntDesign name="checkcircle" size={16} color="green" />
-                  ) : selectedOption !== selectedAlbum &&
-                    selectedOption === option ? (
-                    <AntDesign name="closecircle" size={16} color="red" />
-                  ) : null}
-                  {option}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+        <View style={{ marginTop: 10 }}>
+          <FlatList numColumns={2} data={optionAlbum} renderItem={renderItem} />
         </View>
       )}
     </View>
@@ -129,25 +108,39 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 150,
-    height: 150,
     alignSelf: "center",
     borderRadius: 16,
   },
   option: {
-    width: 150,
-    height: 75,
-    margin: 10,
+    width: 160,
+    padding: 10,
+    margin: 8,
     backgroundColor: "#EDEDF0",
     borderRadius: 12,
-    borderColor: "#C5B9B9",
-    borderWidth: 1,
     justifyContent: "center",
+    alignItems: "center",
+  },
+  selectedOption: {
+    width: 160,
+    padding: 8,
+    margin: 10,
+    backgroundColor: "#27232D",
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
   },
   btnText: {
     fontSize: 16,
-
-    padding: 10,
+    fontWeight: "500",
+    padding: 5,
     textAlign: "center",
     color: "#3D30A2",
+  },
+  selectedBtnText: {
+    fontSize: 16,
+    fontWeight: "500",
+    padding: 5,
+    textAlign: "center",
+    color: "white",
   },
 });

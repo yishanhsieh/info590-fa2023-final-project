@@ -1,38 +1,14 @@
-import { useCallback } from "react";
-import { useFonts } from "expo-font";
 import {
   Text,
   View,
   StyleSheet,
-  Image,
-  Button,
-  Pressable,
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
-
-//if font isn't ready, show Splash Screen
-SplashScreen.preventAutoHideAsync();
 
 export default function EntryPoint({ navigation }) {
-  //use custom font
-  const [fontsLoaded] = useFonts({
-    "Inter-Black": require("./../assets/fonts/Inter-Black.otf"),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("../assets/background.png")}
         resizeMode="cover"
@@ -52,10 +28,9 @@ export default function EntryPoint({ navigation }) {
             <View style={{ flex: 0.4, alignItems: "center" }}>
               <TouchableOpacity
                 style={[styles.Button, styles.shadowProp]}
-                title={"Join the Game"}
                 onPress={() => navigation.navigate("RandomSong")}
               >
-                <Text style={styles.text}>{(title = "Join the Game")}</Text>
+                <Text style={styles.text}>Join the Game</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -77,10 +52,10 @@ const styles = StyleSheet.create({
     color: "#3D30A2",
     fontSize: 36,
     textAlign: "center",
-    fontFamily: "Inter-Black",
-    textShadowColor: "darkgray",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 4,
+    fontWeight: "600",
+    textShadowColor: "black",
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 1,
     alignItems: "center",
   },
   description: {
