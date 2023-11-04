@@ -63,31 +63,41 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
     return array;
   }
 
+  const renderItem = ({ item: option }) => {
+    return (
+      <TouchableOpacity
+        style={
+          selectedOption === option ? styles.selectedOption : styles.option
+        }
+        onPress={() => {
+          setSelectedOption(option);
+        }}
+      >
+        <Text
+          style={
+            selectedOption === option ? styles.selectedBtnText : styles.btnText
+          }
+        >
+          {selectedOption === selectedAlbum && selectedOption === option ? (
+            <AntDesign name="checkcircle" size={16} color="#53E4B1" />
+          ) : selectedOption !== selectedAlbum && selectedOption === option ? (
+            <AntDesign name="closecircle" size={16} color="#FD8C8C" />
+          ) : null}{" "}
+          {option}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <View style={{ justifyContent: "center" }}>
+    <View>
       {showRandomOptions && (
-        <View>
-          <View style={{ justifyContent: "space-evenly" }}>
-            {optionAlbum.map((option, index) => (
-              <TouchableOpacity
-                style={styles.option}
-                onPress={() => {
-                  setSelectedOption(option);
-                }}
-              >
-                <Text style={styles.btnText} key={index}>
-                  {selectedOption === selectedAlbum &&
-                  selectedOption === option ? (
-                    <AntDesign name="checkcircle" size={16} color="green" />
-                  ) : selectedOption !== selectedAlbum &&
-                    selectedOption === option ? (
-                    <AntDesign name="closecircle" size={16} color="red" />
-                  ) : null}
-                  {option}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+        <View style={{ marginTop: 10 }}>
+          <FlatList
+            numColumns={2}
+            data={optionAlbum}
+            renderItem={renderItem} /* style={styles.option} */
+          />
         </View>
       )}
     </View>
@@ -109,20 +119,39 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   option: {
-    width: 250,
+    width: 150,
     padding: 10,
-    /* margin: 10, */
+    margin: 5,
     backgroundColor: "#EDEDF0",
     borderRadius: 12,
-    borderColor: "#C5B9B9",
-    borderWidth: 1,
+    /*  borderColor: "#C5B9B9",
+    borderWidth: 1, */
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  selectedOption: {
+    width: 150,
+    padding: 10,
+    margin: 5,
+    backgroundColor: "#27232D",
+    borderRadius: 12,
+    /* borderColor: "#C5B9B9",
+    borderWidth: 1, */
     justifyContent: "center",
     alignItems: "center",
   },
   btnText: {
     fontSize: 16,
-    /* padding: 10, */
+    fontWeight: "500",
+    padding: 5,
     textAlign: "center",
     color: "#3D30A2",
+  },
+  selectedBtnText: {
+    fontSize: 16,
+    fontWeight: "500",
+    padding: 5,
+    textAlign: "center",
+    color: "white",
   },
 });

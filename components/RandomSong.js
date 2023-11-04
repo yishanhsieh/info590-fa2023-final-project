@@ -185,8 +185,10 @@ export default function RandomSong() {
             flex: 0.3,
             alignItems: "center",
             backgroundColor: "white",
+            
           }}
-        >
+        > 
+        
           <RandomOptions selectedAlbum={album} allAlbumName={allAlbumName} />
         </View>
       )}
