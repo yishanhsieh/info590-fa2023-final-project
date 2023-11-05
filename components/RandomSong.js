@@ -12,6 +12,8 @@ import RandomOptions from "./RandomOptions";
 import ImageBlurShadow from "./ImageBlurShadow";
 import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
+import { setDoc, doc, collection, getDocs } from "firebase/firestore";
+import { db } from "./../firebaseConfig";
 
 /* const fakeSong = [
   {
@@ -62,13 +64,19 @@ import axios from "axios";
 ]; */
 
 export default function RandomSong({ navigation }) {
-  const [album, SetAlbum] = useState("");
+  const [album, setAlbum] = useState("");
   const [sound, setSound] = useState("");
   const [albumImg, setAlbumImg] = useState("");
   const [randomId, setRandomId] = useState();
-  const [tracks, setTracks] = useState([]);
-  const [allAlbumName, setAllAlbumName] = useState();
+  /* const [songs, setSongs] = useState(); //temp use for renew firebase field name */
+  const [tracks, setTracks] = useState();
+  //now `tracks` is gained from Firebase. If Firebase db should renew, uncomment out FetchData to get updated data from Rapid API.
 
+  const [allAlbumName, setAllAlbumName] = useState();
+  const [allAlbumImg, setAllAlbumImg] = useState();
+  const [allAlbumUrl, setAllAlbumUrl] = useState();
+
+  //getTrack from Rapid API
   const getTrack = async () => {
     try {
       const response = await axios({
@@ -77,7 +85,7 @@ export default function RandomSong({ navigation }) {
         params: {
           id: "2siMQsSv15yXBDdjmUSfJX",
           offset: "0",
-          limit: "30",
+          limit: "50",
         },
         headers: {
           "X-RapidAPI-Key": process.env.EXPO_PUBLIC_API_KEY,
@@ -86,32 +94,69 @@ export default function RandomSong({ navigation }) {
       });
       const items = response.data.items;
       console.log("items: ", items);
+
       setTracks(items);
-      setAllAlbumName(items.map((item) => item.track.name)); //adjust to accomodate both name and image
+      setAllAlbumName(items.map((item) => item.track.name));
+      setAllAlbumImg(items.map((item) => item.track.album.images[0].url));
+      setAllAlbumUrl(items.map((item) => item.track.preview_url));
       setRandomId(Math.floor(Math.random() * items.length));
     } catch (err) {
       console.log(err.message);
     }
+    addData();
   };
 
-  useEffect(() => {
+  //If spotify playlist changes, uncomment out the code.
+  /*   useEffect(() => {
     getTrack();
+  }, []); */
+
+  //Save API data to firebase
+  const addData = async () => {
+    try {
+      console.log("allAlbumName", allAlbumName);
+      for (let i = 0; i < allAlbumName.length; i++) {
+        await setDoc(doc(db, "songs", `${i}`), {
+          albumName: allAlbumName[i],
+          albumImg: allAlbumImg[i],
+          albumUrl: allAlbumUrl[i],
+        });
+      }
+      console.log("add data success");
+    } catch (err) {
+      console.log("fail add data", err);
+    }
+  };
+
+  //fetch data from Firestore
+  useEffect(() => {
+    const fetchData = async () => {
+      const dbCol = collection(db, "songs"); //get collection `students`
+      const dbDocs = await getDocs(dbCol); //get documents
+      const trackData = [];
+      dbDocs.forEach((doc) => {
+        trackData.push(doc.data());
+      });
+      setTracks(trackData);
+      setAllAlbumName(trackData.map((item) => item.albumName));
+      console.log(trackData);
+    };
+
+    fetchData();
   }, []);
 
   function getRandomTrack() {
     id = Math.floor(Math.random() * tracks.length);
     if (id != randomId) {
       setRandomId(id);
-      const selectedAlbum = tracks[randomId].track.name;
-      const selectedSong = tracks[randomId].track.preview_url;
-      const selectedAlbumImg = tracks[randomId].track.album.images[0].url;
-      SetAlbum(selectedAlbum);
+      const selectedAlbum = tracks[randomId].albumName;
+      const selectedSong = tracks[randomId].albumUrl;
+      const selectedAlbumImg = tracks[randomId].albumImg;
+      setAlbum(selectedAlbum);
       setAlbumImg(selectedAlbumImg);
       playSound(selectedSong);
     }
   }
-
-  //if selected Item is correct, goRandomTrack();
 
   const handlePress = () => {
     getRandomTrack();
@@ -196,7 +241,6 @@ export default function RandomSong({ navigation }) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

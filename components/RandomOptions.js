@@ -4,10 +4,7 @@ import {
   Text,
   View,
   FlatList,
-  Button,
   StyleSheet,
-  Image,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
