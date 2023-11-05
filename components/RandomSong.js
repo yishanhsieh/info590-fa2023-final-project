@@ -139,6 +139,7 @@ export default function RandomSong({ navigation }) {
       });
       setTracks(trackData);
       setAllAlbumName(trackData.map((item) => item.albumName));
+      setRandomId(Math.floor(Math.random() * trackData.length));
       console.log(trackData);
     };
 
@@ -147,7 +148,7 @@ export default function RandomSong({ navigation }) {
 
   function getRandomTrack() {
     id = Math.floor(Math.random() * tracks.length);
-    if (id != randomId) {
+    if (id !== randomId) {
       setRandomId(id);
       const selectedAlbum = tracks[randomId].albumName;
       const selectedSong = tracks[randomId].albumUrl;

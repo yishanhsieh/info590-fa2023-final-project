@@ -13,7 +13,6 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
   //randomly select three options from allAlbumName array
   // add selectedAlbum in to the array
   // randomize the arrary order
-  //let optionAlbum = [];
   const [optionAlbum, setOptionAlbum] = useState([]);
   const [showRandomOptions, setShowRandomOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
