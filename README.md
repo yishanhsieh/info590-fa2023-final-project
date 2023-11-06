@@ -1,5 +1,5 @@
 
-### Due date
+# Due date
 * 11/7 threshold goals (mvp)
 * 11/14 target goals (expectation)
 * stretch goals
@@ -12,8 +12,7 @@ Task management tool: HackMD (sync to the readme file)
 
 ---
 
-### Task Management (To-do)
-
+# To Do List
 
 | Status      | Item              | Task                                             | Due   |
 | ----------- | ----------------- | ------------------------------------------------ | ----- |
@@ -26,26 +25,24 @@ Task management tool: HackMD (sync to the readme file)
 | v           | answer logics     | correct status                                   | 10/31 |
 | v           |                   | incorrect status                                 | 10/31 |
 | v           | Layout design     | Beautify the entrypoint page                     | 10/31 |
-|             |                   | Beautify the layout - random song page           | 11/7  |
-|             |                   | Show options with albumName and albumImge        | 11/7  |
+| v           |                   | Beautify the layout - random song page           | 11/7  |
 | v           |                   | Change fake data to API data                     | 11/7  |
+| v           |                   | API data stored in Firebase                      | 11/14 |
+| v           |                   | Host the app on Firebase                         | 11/14 |
 | strech goal | Random Quesiton   | randomly select five songs                       | 11/14 |
-|             |                   | show how many questions answered / all           | 11/14 |
-|             |                   | when correct, the bkgColor turns green           | 11/14 |
+|             |                   | show how many questions answered / all           | TBD   |
+|             |                   | when correct, the bkgColor turns green           | TBD   |
 
  
 ---
-### Design
-:pencil: Wireframe: https://whimsical.com/final-project-cross-platform-programming-GJL24cdD6P8ZwZZknsGmcq
-
-Other design tools:
-https://excalidraw.com/
-https://www.eraser.io/home
+# Design
+[Figma Wireframe](https://www.figma.com/file/Tq61wqAUx8Gtks60w0gzMv/info590-fa2023-GuessMusic?type=design&node-id=0%3A1&mode=design&t=Zka29UaMfTr8tz85-1)
 
 
 ---
 
-### Good resources:
+# Reference
+Thanks for [Tim Garcia's GuessSong Github project](https://github.com/tigarcia/SongGuessingGame) provides me an overall understanding about how a GuessSong project would be. 
 
 expo go can't run react-native-sound-player
 https://forums.expo.dev/t/expo-react-native-track-player/62714
@@ -68,10 +65,13 @@ https://reactnavigation.org/docs/navigating/
 Let's build a quiz app with React Native | Expo
 https://www.youtube.com/watch?v=esWUVic6IcU&t=2359s
 
+Other design tools:
+* [excalidraw](https://excalidraw.com/)
+* [eraser.io](https://www.eraser.io/home)
 
 
-
-# **---note taking---**
+# Notes
+During the development, I have met several bugs and questions, and the following are some notes for all the major quesitons.
 
 
 ## Text shadow
@@ -99,9 +99,9 @@ https://docs.expo.dev/guides/environment-variables/
 ## how to make music Options init status = null
 
 ## playSound asynchronously to avoid wrong execution order.
-:question: why the song played is always a step behind the albumname?
+Questions: why the song played is always a step behind the albumname?
 
-:robot_face: Due to the order of execution of **asynchronous** functions and the timing of state updates in your code, when you call playSound(songUrl) immediately **after** calling getRandomTrack(), it doesn't guarantee that the songUrl state will be updated before you call playSound().
+GPT: Due to the order of execution of **asynchronous** functions and the timing of state updates in your code, when you call playSound(songUrl) immediately **after** calling getRandomTrack(), it doesn't guarantee that the songUrl state will be updated before you call playSound().
 
 In RandomOption.js:
 
@@ -293,6 +293,6 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
 
 However, the song plays with serious lag and cause a broken sound.
 
-:robot_face: said: The lag you are experiencing in your code is likely due to the synchronous nature of JavaScript. When you call `getfinalRandomOptions()` ,it's performing a lot of computation in a loop. This can block the main thread and make your app appear unresponsive or laggy. In a React Native application, you should avoid performing time-consuming tasks in the main thread. 
+GPT said: The lag you are experiencing in your code is likely due to the synchronous nature of JavaScript. When you call `getfinalRandomOptions()` ,it's performing a lot of computation in a loop. This can block the main thread and make your app appear unresponsive or laggy. In a React Native application, you should avoid performing time-consuming tasks in the main thread. 
 
 So, I finally resort to a simpler way to shuffle an array.
