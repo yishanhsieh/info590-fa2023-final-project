@@ -39,10 +39,20 @@ Task management tool: HackMD (sync to the readme file)
 [Figma Wireframe](https://www.figma.com/file/Tq61wqAUx8Gtks60w0gzMv/info590-fa2023-GuessMusic?type=design&node-id=0%3A1&mode=design&t=Zka29UaMfTr8tz85-1)
 
 
+
 ---
 
 # Credits
 Thanks for [Tim Garcia's GuessSong Github project](https://github.com/tigarcia/SongGuessingGame) provides me an overall understanding about how a GuessSong project would be. I'm also grateful for [Sujan Anand's quiz app](https://www.youtube.com/watch?v=esWUVic6IcU&t=2359s) tutorials, providing me the idea of using conditional rendering on option status.
+
+Illustrartion credits for [DrawKit Music Illustration](https://www.drawkit.com/illustrations/music-illustrations)
+
+## API
+In this project, I used [Spotify - Playlist tracks](https://rapidapi.com/Glavier/api/spotify23) provided by Rapid API. The playlist ID is connected to my [Spotify playlist](https://open.spotify.com/playlist/2siMQsSv15yXBDdjmUSfJX?si=b7a7acb4abd94cf2).
+
+## Music Source
+Credits for Spotify music. I used preview url, album name, and album image.
+If there is any copyright concerns about the music, please email yishsieh@iu.edu. Thanks.
 
 ## Other reference
 expo go can't run react-native-sound-player
