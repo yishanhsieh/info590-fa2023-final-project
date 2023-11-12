@@ -41,9 +41,10 @@ Task management tool: HackMD (sync to the readme file)
 
 ---
 
-# Reference
-Thanks for [Tim Garcia's GuessSong Github project](https://github.com/tigarcia/SongGuessingGame) provides me an overall understanding about how a GuessSong project would be. 
+# Credits
+Thanks for [Tim Garcia's GuessSong Github project](https://github.com/tigarcia/SongGuessingGame) provides me an overall understanding about how a GuessSong project would be. I'm also grateful for [Sujan Anand's quiz app](https://www.youtube.com/watch?v=esWUVic6IcU&t=2359s) tutorials, providing me the idea of using conditional rendering on option status.
 
+## Other reference
 expo go can't run react-native-sound-player
 https://forums.expo.dev/t/expo-react-native-track-player/62714
 
@@ -56,14 +57,10 @@ https://mihnea.hashnode.dev/how-to-build-an-app-with-react-native
 How to hide confidential key(process.env)
 https://nodejs.org/api/process.html
 
-SongGuessingGame github project
-https://github.com/tigarcia/SongGuessingGame
 
 React Navigation
 https://reactnavigation.org/docs/navigating/
 
-Let's build a quiz app with React Native | Expo
-https://www.youtube.com/watch?v=esWUVic6IcU&t=2359s
 
 Other design tools:
 * [excalidraw](https://excalidraw.com/)
