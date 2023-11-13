@@ -5,7 +5,7 @@ I like anime songs, and usually I start to watch an anime or manga due to its th
 ![songguess-pic](https://i.imgur.com/f40GPnG.png)
 
 
-* Welcome to play : [Demo site](guesssong-2fd90.web.app/)
+* Welcome to play : [Demo site](https://guesssong-2fd90.web.app/)
 * [project plan](https://docs.google.com/document/d/1t15SbiCAqZoMu0GFLgzn3APV9Gcw8uJvULoN0XGPI7A/edit?usp=sharing)
 * [github repo](https://github.com/yishanhsieh/info590-fa2023-final-project)
 * [Figma Wireframe](https://www.figma.com/file/Tq61wqAUx8Gtks60w0gzMv/info590-fa2023-GuessMusic?type=design&node-id=0%3A1&mode=design&t=Zka29UaMfTr8tz85-1)
