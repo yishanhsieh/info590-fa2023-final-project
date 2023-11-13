@@ -1,18 +1,24 @@
 
-# Due date
-* 11/7 threshold goals (mvp)
-* 11/14 target goals (expectation)
-* stretch goals
+# Anime Song Guess Game
+I like anime songs, and usually I start to watch an anime or manga due to its theme songs. Hope you enjoy the worldwide popular animation songs as much as I do.
 
-project plan: https://docs.google.com/document/d/1t15SbiCAqZoMu0GFLgzn3APV9Gcw8uJvULoN0XGPI7A/edit?usp=sharing
+![songguess-pic](https://hackmd.io/_uploads/ryU7kXJEa.png)
 
-github: https://github.com/yishanhsieh/info590-fa2023-final-project
 
-Task management tool: HackMD (sync to the readme file)
+* Welcome to play : [Demo site](guesssong-2fd90.web.app/)
+* [project plan](https://docs.google.com/document/d/1t15SbiCAqZoMu0GFLgzn3APV9Gcw8uJvULoN0XGPI7A/edit?usp=sharing)
+* [github repo](https://github.com/yishanhsieh/info590-fa2023-final-project)
+* [Figma Wireframe](https://www.figma.com/file/Tq61wqAUx8Gtks60w0gzMv/info590-fa2023-GuessMusic?type=design&node-id=0%3A1&mode=design&t=Zka29UaMfTr8tz85-1)
+
 
 ---
 
 # To Do List
+
+## Due date
+* 11/7 threshold goals (mvp)
+* 11/14 target goals (expectation)
+* TBD: stretch goals
 
 | Status      | Item              | Task                                             | Due   |
 | ----------- | ----------------- | ------------------------------------------------ | ----- |
@@ -34,11 +40,6 @@ Task management tool: HackMD (sync to the readme file)
 |             |                   | when correct, the bkgColor turns green           | TBD   |
 
  
----
-# Design
-[Figma Wireframe](https://www.figma.com/file/Tq61wqAUx8Gtks60w0gzMv/info590-fa2023-GuessMusic?type=design&node-id=0%3A1&mode=design&t=Zka29UaMfTr8tz85-1)
-
-
 
 ---
 
@@ -55,26 +56,16 @@ Credits for Spotify music. I used preview url, album name, and album image.
 If there is any copyright concerns about the music, please email yishsieh@iu.edu. Thanks.
 
 ## Other reference
-expo go can't run react-native-sound-player
-https://forums.expo.dev/t/expo-react-native-track-player/62714
 
-How to use Axios in Reat Native(By Rapid API)
-https://rapidapi.com/guides/axios-react-native
-
-How to build an app with react native
-https://mihnea.hashnode.dev/how-to-build-an-app-with-react-native
-
-How to hide confidential key(process.env)
-https://nodejs.org/api/process.html
-
-
-React Navigation
-https://reactnavigation.org/docs/navigating/
-
-
-Other design tools:
-* [excalidraw](https://excalidraw.com/)
-* [eraser.io](https://www.eraser.io/home)
+*  The album image blur effect is created by [Image Blur Shadows for react-native app using react-native-image-blur-shadow](https://dev.to/virtualvivek/give-your-react-native-app-images-blur-drop-shadows-using-this-library-3n24)
+*  [expo go can't run react-native-sound-player](https://forums.expo.dev/t/expo-react-native-track-player/62714)
+*  [How to use Axios in Reat Native(By Rapid API)](https://rapidapi.com/guides/axios-react-native)
+*  [How to build an app with react native](https://mihnea.hashnode.dev/how-to-build-an-app-with-react-native)
+*  [How to hide confidential key](https://nodejs.org/api/process.html)
+*  [React Navigation](https://reactnavigation.org/docs/navigating/)
+* Other design tools:
+    * [excalidraw](https://excalidraw.com/)
+    * [eraser.io](https://www.eraser.io/home)
 
 
 # Notes
