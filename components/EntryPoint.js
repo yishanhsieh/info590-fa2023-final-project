@@ -1,41 +1,34 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export default function EntryPoint({ navigation }) {
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/background.png")}
-        resizeMode="cover"
-        style={styles.image}
-      >
-        <View style={styles.contentContainer}>
-          <View style={{ flex: 0.6 }}></View>
-          <View style={{ flex: 0.4 }}>
-            <View style={{ flex: 0.3 }}>
-              <Text style={styles.header}>Anime Song Guess</Text>
-            </View>
-            <View style={{ flex: 0.3, alignItems: "center" }}>
-              <Text style={styles.description}>
-                Enjoy the worldwide popular anime songs
-              </Text>
-            </View>
-            <View style={{ flex: 0.4, alignItems: "center" }}>
-              <TouchableOpacity
-                style={[styles.Button, styles.shadowProp]}
-                onPress={() => navigation.navigate("RandomSong")}
-              >
-                <Text style={styles.text}>Join the Game</Text>
-              </TouchableOpacity>
-            </View>
+      <View style={styles.contentContainer}>
+        <View style={{ flex: 0.6, justifyContent: "center" }}>
+          <Image
+            style={styles.cover}
+            source={require("./../assets/cover.png")}
+          />
+        </View>
+        <View style={{ flex: 0.4 }}>
+          <View style={{ flex: 0.3 }}>
+            <Text style={styles.header}>Anime Song Guess</Text>
+          </View>
+          <View style={{ flex: 0.3, alignItems: "center" }}>
+            <Text style={styles.description}>
+              Enjoy the worldwide popular anime songs
+            </Text>
+          </View>
+          <View style={{ flex: 0.4, alignItems: "center" }}>
+            <TouchableOpacity
+              style={[styles.Button, styles.shadowProp]}
+              onPress={() => navigation.navigate("RandomSong")}
+            >
+              <Text style={styles.text}>Join the Game</Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </ImageBackground>
+      </View>
     </View>
   );
 }
@@ -43,6 +36,7 @@ export default function EntryPoint({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FFF6DE",
   },
   contentContainer: {
     alignItems: "center",
@@ -66,6 +60,11 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+  },
+  cover: {
+    width: 350,
+    height: 350,
+    justifyContent: "center",
   },
   Button: {
     alignItems: "center",

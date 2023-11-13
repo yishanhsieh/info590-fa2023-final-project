@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Image,
   TouchableOpacity,
   Pressable,
 } from "react-native";
@@ -192,10 +193,13 @@ export default function RandomSong({ navigation }) {
           }}
           onPress={() => navigation.navigate("EntryPoint")}
         >
-          <AntDesign name="home" size={26} color="black" />
+          <Image
+            source={require("./../assets/home.png")}
+            style={{ width: 26, height: 26 }}
+          />
         </Pressable>
       </View>
-      <View style={{ flex: 0.7, justifyContent: "center" }}>
+      <View style={{ flex: 1, justifyContent: "center" }}>
         <View style={{ margin: 12 }}>
           <Text style={styles.heading}>
             {!album ? "Pick up a song" : "What the song is?"}
@@ -231,7 +235,7 @@ export default function RandomSong({ navigation }) {
       {album && (
         <View
           style={{
-            flex: 0.3,
+            flex: 0.2,
             alignItems: "center",
             backgroundColor: "white",
           }}
@@ -265,6 +269,7 @@ const styles = StyleSheet.create({
     borderRadius: 39,
     width: 212,
     backgroundColor: "#FFA33C",
+    marginBottom: 20,
   },
   text: {
     textAlign: "center",

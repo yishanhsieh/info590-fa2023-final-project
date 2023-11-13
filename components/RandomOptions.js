@@ -6,6 +6,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -73,9 +74,15 @@ export default function RandomOptions({ selectedAlbum, allAlbumName }) {
           }
         >
           {selectedOption === selectedAlbum && selectedOption === option ? (
-            <AntDesign name="checkcircle" size={16} color="#53E4B1" />
+            <Image
+              source={require("./../assets/correct.png")}
+              style={{ width: 18, height: 18 }}
+            />
           ) : selectedOption !== selectedAlbum && selectedOption === option ? (
-            <AntDesign name="closecircle" size={16} color="#FD8C8C" />
+            <Image
+              source={require("./../assets/wrong.png")}
+              style={{ width: 18, height: 18 }}
+            />
           ) : null}{" "}
           {option}
         </Text>
