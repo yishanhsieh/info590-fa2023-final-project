@@ -2,9 +2,6 @@
 # Anime Song Guess Game
 I like anime songs, and usually I start to watch an anime or manga due to its theme songs. Hope you enjoy the worldwide popular animation songs as much as I do.
 
-![songguess-pic](https://i.imgur.com/3ohHOLs.png)
-
-
 * Welcome to play : [Demo site](https://guesssong-2fd90.web.app/)
 * [project plan](https://docs.google.com/document/d/1t15SbiCAqZoMu0GFLgzn3APV9Gcw8uJvULoN0XGPI7A/edit?usp=sharing)
 * [github repo](https://github.com/yishanhsieh/info590-fa2023-final-project)
